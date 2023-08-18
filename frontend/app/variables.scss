@@ -1,0 +1,14 @@
+$primary-color: #0165ff;
+$container-width: 1400px;
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: space-center;
+  align-items: center;
+}
