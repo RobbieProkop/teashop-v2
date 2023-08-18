@@ -1,10 +1,6 @@
-/* Components */
-import { Counter } from './components/Counter/Counter'
+import React from "react";
 
-export default function IndexPage() {
-  return <Counter />
-}
-
-export const metadata = {
-  title: 'Redux Toolkit',
-}
+const Home = () => {
+  return <div>Home</div>;
+};
+export default Home;
