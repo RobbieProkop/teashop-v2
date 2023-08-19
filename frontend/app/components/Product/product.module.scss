@@ -2,7 +2,7 @@
 
 .card {
   margin: 0.75rem;
-  padding: 2rem 1rem;
+  padding: 1rem;
   border-radius: 10px;
   background: #fff;
   color: #333;
@@ -10,20 +10,24 @@
   .cardImage {
     position: relative;
     display: block;
-    height: 300px;
-    margin-bottom: 2rem;
+    height: 250px;
+    // aspect-ratio: 64/51;
+    img {
+      aspect-ratio: 64/51;
+    }
   }
 
   .cardBody {
-    max-width: 350px;
+    max-width: 400px;
     margin: auto;
+    // padding: 0 1rem;
 
     h2 {
       margin-bottom: 1rem;
       min-height: 60px;
     }
     h3 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: $gray;
       transition: color 0.3s ease-in-out;
 
@@ -31,6 +35,34 @@
         color: $yellow;
         cursor: pointer;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .card {
+    .cardImage {
+      height: 350px;
+      img {
+        height: 350px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card {
+    .cardImage {
+      height: 350px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    .cardImage {
+      // height: 250px;
+      max-height: 250px;
     }
   }
 }
