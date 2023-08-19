@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./product.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import Rating from "../Rating/Rating";
 
 interface ProductProps {
   product: {
@@ -39,6 +40,7 @@ const Product = ({ product }: ProductProps) => {
           </h2>
           <h3>${product.price}</h3>
         </Link>
+        <Rating value={product.rating} text="Great" />
       </div>
     </article>
   );
