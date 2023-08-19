@@ -1,11 +1,13 @@
 import React from "react";
-import Link from "next/link";
 import styles from "./footer.module.scss";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
-      <h3>This is a footer</h3>
+      <div className="container">
+        <p>Teashop &copy; {currentYear}</p>
+      </div>
     </footer>
   );
 };

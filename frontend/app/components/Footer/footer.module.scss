@@ -1,8 +1,15 @@
-.footer {
-  background: green;
+@import "../../variables.scss";
 
-  .blue {
-    background-color: blue;
-    font-size: 2rem;
+.footer {
+  height: 130px;
+  text-align: center;
+  padding: 1rem;
+  background-color: $primary-color;
+  color: #333;
+  .container {
+    @include flex-center;
+    display: flex;
+    p {
+    }
   }
 }

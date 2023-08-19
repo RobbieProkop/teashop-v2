@@ -5,6 +5,7 @@ import styles from "./header.module.scss";
 
 import user from "public/icons/user.png";
 import cart from "public/icons/cart.png";
+import tea from "public/icons/tea.png";
 
 const Header = () => {
   return (
@@ -12,7 +13,8 @@ const Header = () => {
       <div className="container">
         <div className={styles.flexBetween}>
           <Link className={styles.link} href="/">
-            Home
+            <Image src={tea} alt="cart Icon" className={styles.logo} />
+            Zizi's Teashop
           </Link>
           <div>
             <Link className={styles.link} href="/cart">
