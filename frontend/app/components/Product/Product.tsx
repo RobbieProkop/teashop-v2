@@ -23,25 +23,29 @@ const Product = ({ product }: ProductProps) => {
   const image = product.image;
   return (
     <article className={styles.card}>
-      <Link href={`/product/${product._id}`} className={styles.cardImage}>
-        <Image
-          src={image}
-          alt="Product Image"
-          fill={true}
-          placeholder="blur"
-          blurDataURL={image}
-          objectFit="contain"
-        />
-      </Link>
-      <div className={styles.cardBody}>
-        <Link href={`/product/${product._id}`}>
-          <h2>
+      <Link href={`/product/${product._id}`}>
+        <div className={styles.cardImage}>
+          <Image
+            src={image}
+            alt="Product Image"
+            fill={true}
+            placeholder="blur"
+            blurDataURL={image}
+            objectFit="contain"
+          />
+        </div>
+        <div className={styles.cardBody}>
+          <h2 className={styles.productTitle}>
             <strong>{product.name}</strong>
           </h2>
           <h3>${product.price}</h3>
-        </Link>
-        <Rating value={product.rating} text="Great" />
-      </div>
+
+          <Rating
+            value={product.rating}
+            text={`${product.numReviews} reviews`}
+          />
+        </div>
+      </Link>
     </article>
   );
 };

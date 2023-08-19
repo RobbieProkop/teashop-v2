@@ -1,16 +1,16 @@
 @import "../../variables.scss";
 
 .rating {
-  .stars {
-    span {
-      display: inline-block;
-      height: 32px;
-      width: 32px;
-      margin: 0 0.1rem;
+  display: flex;
+  align-items: center;
+  .star {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    margin: 0 0.1rem;
 
-      img {
-        color: #f8e825;
-      }
+    img {
+      color: #f8e825;
     }
   }
   .ratingText {

@@ -12,53 +12,52 @@ interface RatingProps {
 const Rating = ({ value, text }: RatingProps) => {
   return (
     <div className={styles.rating}>
-      <div className={styles.stars}>
-        <span>
-          {value >= 1 ? (
-            <Image src={star} alt="start icon" width={32} height={32} />
-          ) : value >= 0.5 ? (
-            <Image src={halfStar} alt="start icon" width={32} height={32} />
-          ) : (
-            <Image src={emptyStar} alt="start icon" width={32} height={32} />
-          )}
-        </span>
-        <span>
-          {value >= 2 ? (
-            <Image src={star} alt="start icon" width={32} height={32} />
-          ) : value >= 1.5 ? (
-            <Image src={halfStar} alt="start icon" width={32} height={32} />
-          ) : (
-            <Image src={emptyStar} alt="start icon" width={32} height={32} />
-          )}
-        </span>
-        <span>
-          {value >= 3 ? (
-            <Image src={star} alt="start icon" width={32} height={32} />
-          ) : value >= 2.5 ? (
-            <Image src={halfStar} alt="start icon" width={32} height={32} />
-          ) : (
-            <Image src={emptyStar} alt="start icon" width={32} height={32} />
-          )}
-        </span>
-        <span>
-          {value >= 4 ? (
-            <Image src={star} alt="start icon" width={32} height={32} />
-          ) : value >= 3.5 ? (
-            <Image src={halfStar} alt="start icon" width={32} height={32} />
-          ) : (
-            <Image src={emptyStar} alt="start icon" width={32} height={32} />
-          )}
-        </span>
-        <span>
-          {value >= 5 ? (
-            <Image src={star} alt="start icon" width={32} height={32} />
-          ) : value >= 4.5 ? (
-            <Image src={halfStar} alt="start icon" width={32} height={32} />
-          ) : (
-            <Image src={emptyStar} alt="start icon" width={32} height={32} />
-          )}
-        </span>
-      </div>
+      <span className={styles.star}>
+        {value >= 1 ? (
+          <Image src={star} alt="start icon" width={32} height={32} />
+        ) : value >= 0.5 ? (
+          <Image src={halfStar} alt="start icon" width={32} height={32} />
+        ) : (
+          <Image src={emptyStar} alt="start icon" width={32} height={32} />
+        )}
+      </span>
+      <span className={styles.star}>
+        {value >= 2 ? (
+          <Image src={star} alt="start icon" width={32} height={32} />
+        ) : value >= 1.5 ? (
+          <Image src={halfStar} alt="start icon" width={32} height={32} />
+        ) : (
+          <Image src={emptyStar} alt="start icon" width={32} height={32} />
+        )}
+      </span>
+      <span className={styles.star}>
+        {value >= 3 ? (
+          <Image src={star} alt="start icon" width={32} height={32} />
+        ) : value >= 2.5 ? (
+          <Image src={halfStar} alt="start icon" width={32} height={32} />
+        ) : (
+          <Image src={emptyStar} alt="start icon" width={32} height={32} />
+        )}
+      </span>
+      <span className={styles.star}>
+        {value >= 4 ? (
+          <Image src={star} alt="start icon" width={32} height={32} />
+        ) : value >= 3.5 ? (
+          <Image src={halfStar} alt="start icon" width={32} height={32} />
+        ) : (
+          <Image src={emptyStar} alt="start icon" width={32} height={32} />
+        )}
+      </span>
+      <span className={styles.star}>
+        {value >= 5 ? (
+          <Image src={star} alt="start icon" width={32} height={32} />
+        ) : value >= 4.5 ? (
+          <Image src={halfStar} alt="start icon" width={32} height={32} />
+        ) : (
+          <Image src={emptyStar} alt="start icon" width={32} height={32} />
+        )}
+      </span>
+
       <span className={styles.ratingText}>{text && text}</span>
     </div>
   );

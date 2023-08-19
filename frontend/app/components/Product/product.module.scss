@@ -10,8 +10,8 @@
   .cardImage {
     position: relative;
     display: block;
-    height: 250px;
-    // aspect-ratio: 64/51;
+    // height: 250px;
+    aspect-ratio: 64/51;
     img {
       aspect-ratio: 64/51;
     }
@@ -22,10 +22,13 @@
     margin: auto;
     padding: 0 0.5rem;
 
-    h2 {
+    .productTitle {
       margin: 1rem 0;
-      min-height: 60px;
+      height: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
       text-decoration: underline;
+      white-space: nowrap;
     }
     h3 {
       font-size: 2.5rem;
@@ -44,27 +47,35 @@
 @media screen and (max-width: 1700px) {
   .card {
     .cardImage {
-      height: 350px;
-      img {
-        height: 350px;
+      // height: 350px;
+      // img {
+      //   height: 350px;
+      // }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card {
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card {
+    margin: 0;
+    max-width: 300px;
+
+    .cardBody {
+      h3 {
+        font-size: 2rem;
       }
     }
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 300px) {
   .card {
-    .cardImage {
-      height: 350px;
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .card {
-    .cardImage {
-      // height: 250px;
-      max-height: 250px;
-    }
+    max-width: 260px;
   }
 }
