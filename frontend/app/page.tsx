@@ -1,6 +1,7 @@
 import React from "react";
 import products from "./products";
 import Product from "./components/Product/Product";
+import Image from "next/image";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
           {products.map((product) => (
             <Product key={product._id} product={product} />
           ))}
+          {/* <Image src="/images/airpods.jpg" alt="airpods" /> */}
         </div>
       </div>
     </main>

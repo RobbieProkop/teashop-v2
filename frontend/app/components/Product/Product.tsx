@@ -21,8 +21,13 @@ interface ProductProps {
 const Product = ({ product }: ProductProps) => {
   return (
     <article className={styles.card}>
-      <Link href={`/product/${product._id}`}>
-        <Image src={product.image} alt="Product Image" />
+      <Link href={`/product/${product._id}`} className={styles.cardImage}>
+        <Image
+          src={product.image}
+          alt="Product Image"
+          layout="fill"
+          objectFit="contain"
+        />
       </Link>
       <div className={styles.cardBody}>
         <Link href={`/product/${product._id}`}>
