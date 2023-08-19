@@ -19,13 +19,16 @@ interface ProductProps {
 }
 
 const Product = ({ product }: ProductProps) => {
+  const image = product.image;
   return (
     <article className={styles.card}>
       <Link href={`/product/${product._id}`} className={styles.cardImage}>
         <Image
-          src={product.image}
+          src={image}
           alt="Product Image"
-          layout="fill"
+          fill={true}
+          placeholder="blur"
+          blurDataURL={image}
           objectFit="contain"
         />
       </Link>
@@ -34,8 +37,8 @@ const Product = ({ product }: ProductProps) => {
           <h2>
             <strong>{product.name}</strong>
           </h2>
+          <h3>${product.price}</h3>
         </Link>
-        <h3>${product.price}</h3>
       </div>
     </article>
   );

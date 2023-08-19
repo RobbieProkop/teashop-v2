@@ -2,13 +2,35 @@
 
 .card {
   margin: 0.75rem;
-  padding: 0.75rem;
+  padding: 2rem 1rem;
   border-radius: 10px;
   background: #fff;
+  color: #333;
 
   .cardImage {
     position: relative;
-    // width: 100%;
-    max-height: 5rem;
+    display: block;
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+
+  .cardBody {
+    max-width: 350px;
+    margin: auto;
+
+    h2 {
+      margin-bottom: 1rem;
+      min-height: 60px;
+    }
+    h3 {
+      font-size: 3rem;
+      color: $gray;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: $yellow;
+        cursor: pointer;
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import products from "./products";
 import Product from "./components/Product/Product";
-import Image from "next/image";
+import styles from "./page.module.scss";
 
 const Home = () => {
   return (
@@ -9,11 +9,10 @@ const Home = () => {
       <div className="container">
         <h1>Zizi's Teashop</h1>
 
-        <div>
+        <div className={styles.cardGrid}>
           {products.map((product) => (
             <Product key={product._id} product={product} />
           ))}
-          {/* <Image src="/images/airpods.jpg" alt="airpods" /> */}
         </div>
       </div>
     </main>
