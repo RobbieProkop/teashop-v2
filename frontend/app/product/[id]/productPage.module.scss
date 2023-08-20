@@ -2,4 +2,30 @@
 
 .productPage {
   min-height: 80vh;
+
+  .back {
+    background-color: $light-gray;
+  }
+
+  .flex {
+    display: grid;
+    grid-template-columns: 5fr 4fr 3fr;
+    gap: 1rem;
+
+    div {
+      border: 1px solid red;
+    }
+
+    .image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 64/51;
+
+      img {
+        width: 100%;
+        aspect-ratio: 64/51;
+        object-fit: contain;
+      }
+    }
+  }
 }

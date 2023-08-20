@@ -14,16 +14,20 @@ const productPage = ({ params }: ProductPageProps) => {
   return (
     <main className={`main  ${styles.productPage}`}>
       <div className="container">
-        <Link href="/" className={`btn btn-light ${styles.back}`}>
-          <button>Go Back</button>
+        <Link href="/" className={styles.back}>
+          <button className={`btn ${styles.btnLight}`}>Go Back</button>
         </Link>
         <div className={styles.flex}>
           <div className={styles.image}>
             <Image
               src={product.image}
               alt="Product Image"
-              width={500}
-              height={500}
+              fill={true}
+              placeholder="blur"
+              blurDataURL={product.image}
+
+              // width={500}
+              // height={500}
             />
           </div>
           <div className={styles.info}>
