@@ -36,6 +36,7 @@ const productPage = ({ params }: ProductPageProps) => {
               blurDataURL={product.image}
             />
           </div>
+
           <div className={styles.info}>
             <h3>{product.name}</h3>
             <div className={styles.rating}>
@@ -47,33 +48,38 @@ const productPage = ({ params }: ProductPageProps) => {
             <h4>Price ${product.price}</h4>
             <p>{product.description}</p>
           </div>
-          <div className={styles.card}>
-            <div className={styles.item}>
-              <p>Price:</p>
-              <p>
-                <strong>${product.price}</strong>
-              </p>
-            </div>
-            <div className={styles.item}>
-              <p>Status:</p>
-              <p>{productInStock ? "In Stock" : "Out of Stock"}</p>
-            </div>
-            {productInStock && (
+
+          <div>
+            <div className={styles.card}>
               <div className={styles.item}>
-                <p>Qty:</p>
-                <select name="qty" id="qty">
-                  {inStockArray.map((x) => (
-                    <option key={x} value={x}>
-                      {x}
-                    </option>
-                  ))}
-                </select>
+                <p>Price:</p>
+                <p>
+                  <strong>${product.price}</strong>
+                </p>
               </div>
-            )}
-            <div className={styles.item}>
-              <button className={buttonClasses} disabled={!productInStock}>
-                Add To Cart
-              </button>
+              <div className={styles.item}>
+                <p>Status:</p>
+                <p>{productInStock ? "In Stock" : "Out of Stock"}</p>
+              </div>
+              {productInStock && (
+                <div className={styles.item}>
+                  <p className={styles.col}>Qty:</p>
+                  <div className={styles.select}>
+                    <select name="qty" id="qty">
+                      {inStockArray.map((x) => (
+                        <option key={x} value={x}>
+                          {x}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
+              <div className={styles.add}>
+                <button className={buttonClasses} disabled={!productInStock}>
+                  Add To Cart
+                </button>
+              </div>
             </div>
           </div>
         </div>

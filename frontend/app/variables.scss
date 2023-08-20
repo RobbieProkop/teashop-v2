@@ -7,6 +7,12 @@ $dark: #333;
 
 $container-width: 1400px;
 
+@mixin flex-evenly {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 @mixin flex-between {
   display: flex;
   justify-content: space-between;
