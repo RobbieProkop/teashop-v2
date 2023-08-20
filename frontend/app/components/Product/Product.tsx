@@ -31,7 +31,7 @@ const Product = ({ product }: ProductProps) => {
             fill={true}
             placeholder="blur"
             blurDataURL={image}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         </div>
         <div className={styles.cardBody}>
