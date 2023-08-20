@@ -11,6 +11,8 @@ interface ProductPageProps {
 const productPage = ({ params }: ProductPageProps) => {
   const product = products.find((p) => p._id === params.id);
   if (!product) return <div>Product Not Found</div>;
+
+  const productInStock = product.countInStock > 0 ? "In Stock" : "Out of Stock";
   return (
     <main className={`main  ${styles.productPage}`}>
       <div className="container">
@@ -25,18 +27,18 @@ const productPage = ({ params }: ProductPageProps) => {
               fill={true}
               placeholder="blur"
               blurDataURL={product.image}
-
-              // width={500}
-              // height={500}
             />
           </div>
           <div className={styles.info}>
             <h3>{product.name}</h3>
-            <Rating
-              value={product.rating}
-              text={`${product.numReviews} reviews`}
-            />
+            <div className={styles.rating}>
+              <Rating
+                value={product.rating}
+                text={`${product.numReviews} reviews`}
+              />
+            </div>
             <h4>Price ${product.price}</h4>
+            <p>{product.description}</p>
           </div>
           <div className={styles.card}>
             <div className={styles.item}>
@@ -47,9 +49,17 @@ const productPage = ({ params }: ProductPageProps) => {
             </div>
             <div className={styles.item}>
               <p>Status:</p>
-              <p>
-                <strong>${product.countInStock}</strong>
-              </p>
+              <p>{productInStock}</p>
+            </div>
+            <div className={styles.item}>
+              <p>Qty:</p>
+              <select name="qty" id="qty">
+                {[...Array(product.countInStock).keys()].map((x) => (
+                  <option key={x + 1} value={x + 1}>
+                    {x + 1}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className={styles.item}>
               <button className="btn btn-add">Add To Cart</button>

@@ -9,11 +9,12 @@
 
   .flex {
     display: grid;
-    grid-template-columns: 5fr 4fr 3fr;
+    grid-template-columns: 6fr 3fr 3fr;
     gap: 1rem;
-
+    margin-top: 2rem;
+    padding: 1rem 0;
     div {
-      border: 1px solid red;
+      // border: 1px solid red;
     }
 
     .image {
@@ -23,8 +24,48 @@
 
       img {
         width: 100%;
-        aspect-ratio: 64/51;
         object-fit: contain;
+      }
+    }
+
+    .info {
+      h3 {
+        font-size: 2rem;
+        color: $gray;
+        padding: 2rem 1rem;
+        border-bottom: 1px solid $gray;
+      }
+
+      .rating {
+        padding: 2rem 1rem;
+        border-bottom: 1px solid $gray;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: $gray;
+        padding: 2rem 1rem;
+        border-bottom: 1px solid $gray;
+      }
+      p {
+        padding: 2rem 1rem;
+        color: $gray;
+      }
+    }
+
+    .card {
+      margin: 0;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid $gray;
+      color: #333;
+
+      .item {
+        @include flex-between;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid $gray;
+        // box-shadow: ;
       }
     }
   }
