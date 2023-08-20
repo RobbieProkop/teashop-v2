@@ -118,7 +118,6 @@ ul {
 }
 
 .btn {
-  background-color: $primary;
   color: #fff;
   margin-top: 10px;
   padding: 1rem 1.2rem;
@@ -129,12 +128,22 @@ ul {
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
 
+  &-primary {
+    background-color: $primary;
+  }
   &:hover {
     opacity: 0.7;
   }
 
   &-add {
     background-color: $dark;
+  }
+
+  &-disabled {
+    &:hover {
+      opacity: 1;
+      cursor: default;
+    }
   }
 }
 

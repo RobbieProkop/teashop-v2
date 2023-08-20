@@ -12,7 +12,14 @@ const productPage = ({ params }: ProductPageProps) => {
   const product = products.find((p) => p._id === params.id);
   if (!product) return <div>Product Not Found</div>;
 
-  const productInStock = product.countInStock > 0 ? "In Stock" : "Out of Stock";
+  const productInStock = product.countInStock > 0 ? true : false;
+
+  const inStockArray = Array.from(
+    { length: product.countInStock },
+    (_, i) => i + 1
+  );
+
+  const buttonClasses = productInStock ? "btn btn-add" : "btn btn-disabled";
   return (
     <main className={`main  ${styles.productPage}`}>
       <div className="container">
@@ -49,20 +56,24 @@ const productPage = ({ params }: ProductPageProps) => {
             </div>
             <div className={styles.item}>
               <p>Status:</p>
-              <p>{productInStock}</p>
+              <p>{productInStock ? "In Stock" : "Out of Stock"}</p>
             </div>
+            {productInStock && (
+              <div className={styles.item}>
+                <p>Qty:</p>
+                <select name="qty" id="qty">
+                  {inStockArray.map((x) => (
+                    <option key={x} value={x}>
+                      {x}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
             <div className={styles.item}>
-              <p>Qty:</p>
-              <select name="qty" id="qty">
-                {[...Array(product.countInStock).keys()].map((x) => (
-                  <option key={x + 1} value={x + 1}>
-                    {x + 1}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className={styles.item}>
-              <button className="btn btn-add">Add To Cart</button>
+              <button className={buttonClasses} disabled={!productInStock}>
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>
