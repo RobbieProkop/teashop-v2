@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+.imagesContainer {
+  // display: grid;
+  // grid-template-columns: repeat(4, 1fr);
+  // position: relative;
+
+  .image {
+    position: relative;
+    max-width: 100%;
+    aspect-ratio: 64/51;
+    .mainImage {
+      max-width: 640px;
+      max-height: 510px;
+    }
+  }
+
+  .subImagesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    justify-content: center;
+
+    .thumbnailActive {
+      border: 2px solid $primary;
+    }
+
+    .thumbnail {
+      margin: 0 5px;
+    }
+  }
+}

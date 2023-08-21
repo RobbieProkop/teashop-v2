@@ -14,16 +14,16 @@
     margin-top: 2rem;
     padding: 1rem 0;
 
-    .image {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 64/51;
+    // .image {
+    //   position: relative;
+    //   width: 100%;
+    //   aspect-ratio: 64/51;
 
-      img {
-        width: 100%;
-        object-fit: contain;
-      }
-    }
+    //   img {
+    //     width: 100%;
+    //     object-fit: contain;
+    //   }
+    // }
 
     .info {
       h3 {
@@ -84,6 +84,14 @@
       }
       .add {
         padding: 1.5rem 1rem;
+      }
+    }
+  }
+
+  .reviews {
+    ul {
+      li {
+        margin: 2rem;
       }
     }
   }

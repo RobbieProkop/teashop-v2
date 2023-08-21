@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./rating.module.scss";
 import Image from "next/image";
 const star = "/icons/star.png";
@@ -6,10 +7,11 @@ const emptyStar = "/icons/empty-star.png";
 
 interface RatingProps {
   value: number;
+  id: string;
   text?: string;
 }
 
-const Rating = ({ value, text }: RatingProps) => {
+const Rating = ({ value, id, text }: RatingProps) => {
   return (
     <div className={styles.rating}>
       <span className={styles.star}>
@@ -58,7 +60,9 @@ const Rating = ({ value, text }: RatingProps) => {
         )}
       </span>
 
-      <span className={styles.ratingText}>{text && text}</span>
+      <Link href={`/product/${id}#reviews`}>
+        <span className={styles.ratingText}>{text && text}</span>
+      </Link>
     </div>
   );
 };

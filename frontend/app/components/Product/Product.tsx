@@ -4,11 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Rating from "../Rating/Rating";
 
-interface ProductProps {
+export interface ProductType {
   product: {
     _id: string;
     name: string;
-    image: string;
+    image: string[];
     description: string;
     brand: string;
     category: string;
@@ -19,8 +19,8 @@ interface ProductProps {
   };
 }
 
-const Product = ({ product }: ProductProps) => {
-  const image = product.image;
+const Product = ({ product }: ProductType) => {
+  const image = product.image[0];
   return (
     <article className={styles.card}>
       <Link href={`/product/${product._id}`}>
@@ -42,6 +42,7 @@ const Product = ({ product }: ProductProps) => {
 
           <Rating
             value={product.rating}
+            id={product._id}
             text={`${product.numReviews} reviews`}
           />
         </div>
