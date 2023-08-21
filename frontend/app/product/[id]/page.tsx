@@ -30,32 +30,6 @@ const productPage = ({ params }: ProductPageProps) => {
             <button className={`btn ${styles.btnLight}`}>Go Back</button>
           </Link>
           <div className={styles.flex}>
-            {/* <div className={styles.image}>
-              <>
-                <Image
-                  src={thumbnail}
-                  alt="Thumbnail Image of Product"
-                  fill={true}
-                  placeholder="blur"
-                  blurDataURL={thumbnail}
-                />
-                {product.image.map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image}
-                    alt={`Product Image ${index + 1}`}
-                    fill={true}
-                    placeholder="blur"
-                    blurDataURL={image[0]}
-                    className={styles.thumbnail}
-                    style={{ objectFit: "contain" }}
-                    onClick={() => {
-                      setThumbnail(image);
-                    }}
-                  />
-                ))}
-              </>
-            </div> */}
             <ProductImage product={product} />
 
             <div className={styles.info}>
