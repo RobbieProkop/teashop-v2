@@ -5,8 +5,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node --loader ts-node/esm ./backend/server.ts",
-    "client": "npm run dev --prefix frontend",
+    "start": "node --loader ts-node/esm ./server.ts",
+    "client": "npm run dev --prefix ../frontend",
     "server": "nodemon",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "build": "tsc -p ."
