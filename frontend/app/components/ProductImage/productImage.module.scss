@@ -1,17 +1,16 @@
 @import "../../variables.scss";
 
 .imagesContainer {
-  // display: grid;
-  // grid-template-columns: repeat(4, 1fr);
-  // position: relative;
-
   .image {
     position: relative;
-    max-width: 100%;
-    aspect-ratio: 64/51;
+    height: 510px;
+    // aspect-ratio: 64/51;
+
     .mainImage {
       max-width: 640px;
       max-height: 510px;
+      object-fit: contain;
+      margin: auto;
     }
   }
 
@@ -26,7 +25,12 @@
     }
 
     .thumbnail {
+      object-fit: contain;
       margin: 0 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

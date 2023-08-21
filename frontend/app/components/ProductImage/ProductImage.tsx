@@ -25,7 +25,6 @@ const ProductImage = ({ product }: ProductType) => {
             key={index}
             src={image}
             alt={`${product.name} ${index + 1}`}
-            // fill={true}
             placeholder="blur"
             blurDataURL={image[0]}
             className={
@@ -35,7 +34,6 @@ const ProductImage = ({ product }: ProductType) => {
             }
             width={125}
             height={100}
-            // style={{ objectFit: "contain" }}
             onClick={() => {
               setThumbnail(image);
             }}
