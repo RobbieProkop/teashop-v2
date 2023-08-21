@@ -1,13 +1,16 @@
 @import "../../variables.scss";
 
 .imagesContainer {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 2rem;
+
   .image {
     position: relative;
     height: 510px;
-    // aspect-ratio: 64/51;
 
     .mainImage {
-      max-width: 640px;
+      max-width: 600px;
       max-height: 510px;
       object-fit: contain;
       margin: auto;
@@ -16,9 +19,10 @@
 
   .subImagesContainer {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 1.5rem;
-    justify-content: center;
+    position: relative;
+    z-index: 10;
 
     .thumbnailActive {
       border: 2px solid $primary;
@@ -26,7 +30,7 @@
 
     .thumbnail {
       object-fit: contain;
-      margin: 0 5px;
+      margin: 5px 2px;
 
       &:hover {
         cursor: pointer;

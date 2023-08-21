@@ -9,16 +9,6 @@ const ProductImage = ({ product }: ProductType) => {
   const [thumbnail, setThumbnail] = useState(product.image[0]);
   return (
     <div className={styles.imagesContainer}>
-      <div className={styles.image}>
-        <Image
-          src={thumbnail}
-          alt="Thumbnail Image of Product"
-          fill={true}
-          placeholder="blur"
-          blurDataURL={thumbnail}
-          className={styles.mainImage}
-        />
-      </div>
       <div className={styles.subImagesContainer}>
         {product.image.map((image, index) => (
           <Image
@@ -32,13 +22,23 @@ const ProductImage = ({ product }: ProductType) => {
                 ? `${styles.thumbnail} ${styles.thumbnailActive}`
                 : styles.thumbnail
             }
-            width={125}
-            height={100}
+            width={100}
+            height={80}
             onClick={() => {
               setThumbnail(image);
             }}
           />
         ))}
+      </div>
+      <div className={styles.image}>
+        <Image
+          src={thumbnail}
+          alt="Thumbnail Image of Product"
+          fill={true}
+          placeholder="blur"
+          blurDataURL={thumbnail}
+          className={styles.mainImage}
+        />
       </div>
     </div>
   );
