@@ -18,11 +18,12 @@
   }
 
   .subImagesContainer {
-    display: flex;
+    @include flex-center;
     flex-direction: column;
     flex-wrap: wrap;
     position: relative;
     z-index: 10;
+    margin: auto;
 
     .thumbnailActive {
       border: 2px solid $primary;
@@ -34,6 +35,34 @@
 
       &:hover {
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .imagesContainer {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .subImagesContainer {
+      flex-direction: row;
+
+      .thumbnail {
+        width: 75px;
+        height: 60px;
+        margin: 2px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imagesContainer {
+    .image {
+      height: 300px;
+      .mainImage {
+        height: 300px;
       }
     }
   }
