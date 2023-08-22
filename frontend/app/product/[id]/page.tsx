@@ -1,16 +1,17 @@
-import products from "../../products";
+// import products from "../../products";
 import styles from "./productPage.module.scss";
 import Link from "next/link";
-import Image from "next/image";
 import Rating from "../../components/Rating/Rating";
-import { useState } from "react";
 import ProductImage from "../../components/ProductImage/ProductImage";
+import { ProductType } from "../../components/Product/Product";
+import { getProducts } from "../../actions/actions";
 
 interface ProductPageProps {
   params: { id: string };
 }
 
-const productPage = ({ params }: ProductPageProps) => {
+const productPage = async ({ params }: ProductPageProps) => {
+  const products: ProductType[] = await getProducts();
   const product = products.find((p) => p._id === params.id);
   if (!product) return <div>Product Not Found</div>;
 

@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./productImage.module.scss";
-import { ProductType } from "../Product/Product";
+import { ProductProps } from "../Product/Product";
 
-const ProductImage = ({ product }: ProductType) => {
+const ProductImage = ({ product }: ProductProps) => {
   const [thumbnail, setThumbnail] = useState(product.image[0]);
   return (
     <div className={styles.imagesContainer}>
