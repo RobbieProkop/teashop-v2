@@ -1,14 +1,15 @@
 import React from "react";
 import styles from "./grid.module.scss";
-import products from "../../products";
-import Product from "../Product/Product";
+import Product, { ProductType } from "../Product/Product";
+import { getProducts } from "../../actions/actions";
 
-const ProductsGridHome = () => {
+const ProductsGridHome = async () => {
+  const products: ProductType[] = await getProducts();
   return (
     <div className={styles.cardGrid}>
-      {products.map((product) => (
-        <Product key={product._id} product={product} />
-      ))}
+      {products.map((product) => {
+        return <Product product={product} />;
+      })}
     </div>
   );
 };

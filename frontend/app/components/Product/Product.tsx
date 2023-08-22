@@ -5,21 +5,23 @@ import Image from "next/image";
 import Rating from "../Rating/Rating";
 
 export interface ProductType {
-  product: {
-    _id: string;
-    name: string;
-    image: string[];
-    description: string;
-    brand: string;
-    category: string;
-    price: number;
-    countInStock: number;
-    rating: number;
-    numReviews: number;
-  };
+  _id: string;
+  name: string;
+  image: string[];
+  description: string;
+  brand: string;
+  category: string;
+  price: number;
+  countInStock: number;
+  rating: number;
+  numReviews: number;
 }
 
-const Product = ({ product }: ProductType) => {
+export interface ProductProps {
+  product: ProductType;
+}
+
+const Product = ({ product }: ProductProps) => {
   const image = product.image[0];
   return (
     <article className={styles.card}>
