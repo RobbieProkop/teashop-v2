@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styles from "./product.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,7 +21,7 @@ export interface ProductProps {
   product: ProductType;
 }
 
-const Product = ({ product }: ProductProps) => {
+const Product: FC<ProductProps> = ({ product }) => {
   const image = product.image[0];
   return (
     <article className={styles.card}>

@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { FC, useState } from "react";
 import styles from "./productImage.module.scss";
 import { ProductProps } from "../Product/Product";
 
-const ProductImage = ({ product }: ProductProps) => {
+const ProductImage: FC<ProductProps> = ({ product }) => {
   const [thumbnail, setThumbnail] = useState(product.image[0]);
   return (
     <div className={styles.imagesContainer}>

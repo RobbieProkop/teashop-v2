@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import styles from "./grid.module.scss";
 import Product, { ProductType } from "../Product/Product";
 import { getProducts } from "../../actions/actions";
 
-const ProductsGridHome = async () => {
+const ProductsGridHome: FC = async () => {
   const products: ProductType[] = await getProducts();
   return (
     <div className={styles.cardGrid}>

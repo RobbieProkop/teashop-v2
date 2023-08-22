@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./header.module.scss";
@@ -7,7 +7,7 @@ import user from "public/icons/user.png";
 import cart from "public/icons/cart.png";
 import tea from "public/icons/tea.png";
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className="container">
