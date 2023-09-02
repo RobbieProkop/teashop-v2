@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const getProducts = async () => {
-  const { data } = await axios.get("http://localhost:8080/api/products");
+export const getProducts = async (url: string) => {
+  const { data } = await axios.get(url);
   if (!data) throw new Error("Error in fetching products");
   return data;
 };

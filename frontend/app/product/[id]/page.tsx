@@ -11,8 +11,10 @@ interface ProductPageProps {
 }
 
 const productPage: FC<ProductPageProps> = async ({ params }) => {
-  const products: ProductType[] = await getProducts();
-  const product = products.find((p) => p._id === params.id);
+  const product: ProductType = await getProducts(
+    `http://localhost:8080/api/products/${params.id}`
+  );
+  // const product = products.find((p) => p._id === params.id);
   if (!product) return <div>Product Not Found</div>;
 
   const productInStock = product.countInStock > 0 ? true : false;

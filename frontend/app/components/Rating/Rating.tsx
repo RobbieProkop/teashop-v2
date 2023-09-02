@@ -60,9 +60,9 @@ const Rating = ({ value, id, text }: RatingProps) => {
         )}
       </span>
 
-      <Link href={`/product/${id}#reviews`}>
-        <span className={styles.ratingText}>{text && text}</span>
-      </Link>
+      {/* <Link href={`/product/${id}#reviews`}> */}
+      <span className={styles.ratingText}>{text && text}</span>
+      {/* </Link> */}
     </div>
   );
 };
