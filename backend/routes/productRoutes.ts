@@ -8,7 +8,6 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const products = await Product.find({});
-    console.log("prodductssss", products);
     res.json(products);
   })
 );
@@ -19,7 +18,8 @@ router.get(
     if (product) {
       return res.json(product);
     }
-    res.status(404).json({ message: "Product Not Found" });
+    res.status(404);
+    throw new Error("Resource not found");
   })
 );
 export default router;
