@@ -8,6 +8,8 @@ import Order from "./models/orderModel.js";
 import Product from "./models/productModel.js";
 import connectDB from "./config/db.js";
 dotenv.config();
+//need this here or else colors will not get transpiled to js file
+console.log("colors", colors);
 connectDB();
 const importData = async () => {
   try {
@@ -34,16 +36,14 @@ const destroyData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
-    console.log("Data Destroyed".red.inverse);
+    console.log("Data Destroyed");
   } catch (error) {
-    console.log("error", error);
+    console.log("error", error.red.inverse);
     process.exit(1);
   }
 };
 if (process.argv[2] === "-d") {
-  // return destroyData()
-  console.log("deletedddddde");
+  destroyData();
 } else {
-  // importData()
-  console.log("importedddd");
+  importData();
 }

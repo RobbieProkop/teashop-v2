@@ -9,6 +9,8 @@
     "client": "npm run dev --prefix ../frontend",
     "server": "nodemon",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "data-import": "node build/seeder.js",
+    "data-destroy": "node build/seeder.js -d",
     "build": "tsc -p ."
   },
   "repository": {
