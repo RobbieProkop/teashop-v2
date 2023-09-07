@@ -6,6 +6,7 @@ import styles from "./productImage.module.scss";
 import { ProductProps } from "../Product/Product";
 
 const ProductImage: FC<ProductProps> = ({ product }) => {
+  console.log("producct image", product);
   const [thumbnail, setThumbnail] = useState(product.image[0]);
   return (
     <div className={styles.imagesContainer}>

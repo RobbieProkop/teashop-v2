@@ -4,9 +4,7 @@ import Product, { ProductType } from "../Product/Product";
 import { getProducts } from "../../actions/actions";
 
 const ProductsGridHome: FC = async () => {
-  const products: ProductType[] = await getProducts(
-    "http://localhost:8080/api/products"
-  );
+  const products: ProductType[] = await getProducts();
   return (
     <div className={styles.cardGrid}>
       {products.map((product) => {

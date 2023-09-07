@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProductsGridHome from "./components/ProductsGridHome/Product";
+import ProductsGridHome from "./components/ProductsGridHome/ProductGridHome";
 
 const Home = () => {
   return (
