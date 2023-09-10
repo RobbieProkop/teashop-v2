@@ -1,5 +1,3 @@
-"use client";
-
 import styles from "./productPage.module.scss";
 import Link from "next/link";
 import Rating from "../../components/Rating/Rating";
