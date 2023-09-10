@@ -7,7 +7,7 @@ import { useStore } from "../../src/store";
 
 const ProductsGridHome: FC = async () => {
   const products: ProductType[] = await getProducts();
-  useStore();
+  // useStore().setState({});
   return (
     <div className={styles.cardGrid}>
       {products.map((product) => {
