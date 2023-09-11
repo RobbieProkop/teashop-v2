@@ -1,6 +1,5 @@
 import styles from "../styles/grid.module.scss";
 import { useState, useEffect } from "react";
-// import Product from '../components/Product';
 import Product, { ProductType } from "../components/Product/Product";
 import axios from "axios";
 
@@ -21,7 +20,7 @@ const HomePage = () => {
       <h1>Latest Products</h1>
       <div className={styles.cardGrid}>
         {products.map((product) => {
-          return <Product product={product} />;
+          return <Product key={product._id} product={product} />;
         })}
       </div>
     </>

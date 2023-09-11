@@ -13,7 +13,9 @@
     // height: 250px;
     aspect-ratio: 64/51;
     img {
+      max-width: 100%;
       aspect-ratio: 64/51;
+      object-fit: contain;
     }
   }
 

@@ -8,8 +8,9 @@
   color: #333;
   .container {
     @include flex-center;
-    display: flex;
+
     p {
+      align-self: center;
     }
   }
 }
