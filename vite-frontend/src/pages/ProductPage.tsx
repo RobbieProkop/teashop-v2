@@ -1,104 +1,99 @@
-import styles from "./productPage.module.scss";
-import Link from "next/link";
-import Rating from "../../components/Rating/Rating";
-import ProductImage from "../../components/ProductImage/ProductImage";
-import { ProductType } from "../../components/Product/Product";
-import { getSingleProduct } from "../../actions/actions";
-import { FC } from "react";
-import { useStore } from "../../src/store";
+import styles from "../styles/productPage.module.scss";
+import { useState, useEffect, FC } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Rating from "../components/Rating/Rating";
+import ProductImage from "../components/ProductImage/ProductImage";
+import { ProductType } from "../components/Product/Product";
+import axios from "axios";
 
-interface ProductPageProps {
-  params: { id: string };
-}
+const ProductPage: FC = () => {
+  const { id: productId } = useParams();
+  const [product, setProduct] = useState<ProductType | null>(null);
 
-const productPage: FC<ProductPageProps> = async ({ params }) => {
-  const product: ProductType = await getSingleProduct(params.id);
-  if (!product) return <div>Product Not Found</div>;
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${productId}`);
+      setProduct(data);
+    };
 
-  // useStore.setState({
-  //   name: product.name,
-  //   price: product.price,
-  //   countInStock: product.countInStock,
-  // });
+    fetchProduct();
+  }, [productId]);
 
-  const productInStock = product.countInStock > 0 ? true : false;
+  const inStockArray = product
+    ? Array.from({ length: product.countInStock }, (_, i) => i + 1)
+    : ["Out Of Stock"];
 
-  const inStockArray = Array.from(
-    { length: product.countInStock },
-    (_, i) => i + 1
-  );
-
-  const addToCard = () => {
-    useStore.setState({
-      name: product.name,
-      price: product.price,
-      image: product.image[0],
-      desc: product.description,
-      countInStock: product.countInStock,
-    });
-  };
-
-  const buttonClasses = productInStock ? "btn btn-add" : "btn btn-disabled";
   return (
     <main className={`main  ${styles.productPage}`}>
       <div className="container">
         <section>
-          <Link href="/" className={styles.back}>
+          <Link to="/" className={styles.back}>
             <button className={`btn ${styles.btnLight}`}>Go Back</button>
           </Link>
           <div className={styles.flex}>
-            <ProductImage product={product} />
+            {product && (
+              <>
+                <ProductImage product={product} />
 
-            <div className={styles.info}>
-              <h3>{product.name}</h3>
-              <div className={styles.rating}>
-                <Rating
-                  value={product.rating}
-                  id={product._id}
-                  text={`${product.numReviews} reviews`}
-                />
-              </div>
-              <h4>Price ${product.price}</h4>
-              <p>{product.description}</p>
-            </div>
+                <div className={styles.info}>
+                  <h3>{product.name}</h3>
+                  <div className={styles.rating}>
+                    <Rating
+                      value={product.rating}
+                      id={product._id}
+                      text={`${product.numReviews} reviews`}
+                    />
+                  </div>
+                  <h4>Price ${product.price}</h4>
+                  <p>{product.description}</p>
+                </div>
 
-            <div>
-              <div className={styles.card}>
-                <div className={styles.item}>
-                  <p>Price:</p>
-                  <p>
-                    <strong>${product.price}</strong>
-                  </p>
-                </div>
-                <div className={styles.item}>
-                  <p>Status:</p>
-                  <p>{productInStock ? "In Stock" : "Out of Stock"}</p>
-                </div>
-                {productInStock && (
-                  <div className={styles.item}>
-                    <p className={styles.col}>Qty:</p>
-                    <div className={styles.select}>
-                      <select name="qty" id="qty">
-                        {inStockArray.map((x) => (
-                          <option key={x} value={x}>
-                            {x}
-                          </option>
-                        ))}
-                      </select>
+                <div>
+                  <div className={styles.card}>
+                    <div className={styles.item}>
+                      <p>Price:</p>
+                      <p>
+                        <strong>${product.price}</strong>
+                      </p>
+                    </div>
+                    <div className={styles.item}>
+                      <p>Status:</p>
+                      <p>
+                        {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                      </p>
+                    </div>
+                    {product.countInStock > 0 && (
+                      <div className={styles.item}>
+                        <p className={styles.col}>Qty:</p>
+                        <div className={styles.select}>
+                          <select name="qty" id="qty">
+                            {inStockArray.map((x) => (
+                              <option key={x} value={x}>
+                                {x}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    )}
+                    <div className={styles.add}>
+                      <button
+                        className={
+                          product.countInStock > 0
+                            ? "btn btn-add"
+                            : "btn btn-disabled"
+                        }
+                        disabled={product.countInStock === 0}
+                        type="button"
+                      >
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
-                )}
-                <div className={styles.add}>
-                  <button
-                    className={buttonClasses}
-                    disabled={!productInStock}
-                    onClick={addToCard}
-                  >
-                    Add To Cart
-                  </button>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </section>
         <section className={styles.reviews} id="reviews">
@@ -275,4 +270,5 @@ const productPage: FC<ProductPageProps> = async ({ params }) => {
     </main>
   );
 };
-export default productPage;
+
+export default ProductPage;

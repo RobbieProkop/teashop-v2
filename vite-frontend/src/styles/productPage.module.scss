@@ -1,0 +1,96 @@
+@import "variables.scss";
+
+.productPage {
+  min-height: 80vh;
+
+  .back {
+    background-color: $light-gray;
+  }
+
+  .flex {
+    display: grid;
+    grid-template-columns: 6fr 3fr 3fr;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem 0;
+
+    .info {
+      h3 {
+        font-size: 2rem;
+        color: $gray;
+        padding: 2rem 1.2rem;
+        border-bottom: 1px solid $gray;
+      }
+
+      .rating {
+        padding: 2rem 1.2rem;
+        border-bottom: 1px solid $gray;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: $gray;
+        padding: 2rem 1.2rem;
+        border-bottom: 1px solid $gray;
+      }
+      p {
+        padding: 2rem 1.2rem;
+        color: $gray;
+      }
+    }
+
+    .card {
+      margin: 0;
+      border-radius: 10px;
+      border: 1px solid #a3a1a1;
+      color: #333;
+      box-shadow: 0 5px 5px #a3a1a1;
+
+      .item {
+        @include flex-between;
+        border-bottom: 1px solid $gray;
+        padding: 1.5rem 2rem 1.5rem 1rem;
+
+        .col,
+        .select {
+          max-width: 100%;
+          width: 100%;
+        }
+
+        .select {
+          padding: 0 0 0 2rem;
+          select {
+            width: 100%;
+            padding: 0.675rem 0.75rem;
+            background-color: rgb(235, 235, 235);
+            color: #333;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            appearance: none;
+          }
+        }
+      }
+      .add {
+        padding: 1.5rem 1rem;
+      }
+    }
+  }
+
+  .reviews {
+    ul {
+      li {
+        margin: 2rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .productPage {
+    .flex {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

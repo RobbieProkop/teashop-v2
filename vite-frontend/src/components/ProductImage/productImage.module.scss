@@ -1,0 +1,69 @@
+@import "../../styles/variables.scss";
+
+.imagesContainer {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 2rem;
+
+  .image {
+    position: relative;
+    height: 510px;
+
+    .mainImage {
+      max-width: 600px;
+      max-height: 510px;
+      object-fit: contain;
+      margin: auto;
+    }
+  }
+
+  .subImagesContainer {
+    @include flex-center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+    margin: auto;
+
+    .thumbnailActive {
+      border: 2px solid $primary;
+    }
+
+    .thumbnail {
+      object-fit: contain;
+      margin: 5px 2px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .imagesContainer {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .subImagesContainer {
+      flex-direction: row;
+
+      .thumbnail {
+        width: 75px;
+        height: 60px;
+        margin: 2px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imagesContainer {
+    .image {
+      height: 300px;
+      .mainImage {
+        height: 300px;
+      }
+    }
+  }
+}

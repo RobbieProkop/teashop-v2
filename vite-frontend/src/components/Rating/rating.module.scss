@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+.rating {
+  display: flex;
+  align-items: center;
+  .star {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    margin: 0 0.1rem;
+
+    img {
+      color: #f8e825;
+      height: 32px;
+      width: 32px;
+    }
+  }
+  .ratingText {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding-left: 0.5rem;
+  }
+}

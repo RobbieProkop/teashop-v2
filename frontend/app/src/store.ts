@@ -3,6 +3,8 @@ interface ProductState {
   name: string;
   price: number;
   countInStock: number;
+  image: string;
+  desc: string;
   cartTotal: number;
 }
 
@@ -10,6 +12,8 @@ export const useStore = create((set) => ({
   name: "",
   price: 0,
   countInStock: 0,
+  image: "",
+  desc: "",
   cartTotal: 0,
 }));
 // import { configureStore } from "@reduxjs/toolkit";
