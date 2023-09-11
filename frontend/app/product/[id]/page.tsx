@@ -5,6 +5,7 @@ import ProductImage from "../../components/ProductImage/ProductImage";
 import { ProductType } from "../../components/Product/Product";
 import { getSingleProduct } from "../../actions/actions";
 import { FC } from "react";
+import { useStore } from "../../src/store";
 
 interface ProductPageProps {
   params: { id: string };
@@ -14,12 +15,26 @@ const productPage: FC<ProductPageProps> = async ({ params }) => {
   const product: ProductType = await getSingleProduct(params.id);
   if (!product) return <div>Product Not Found</div>;
 
+  // useStore.setState({
+  //   name: product.name,
+  //   price: product.price,
+  //   countInStock: product.countInStock,
+  // });
+
   const productInStock = product.countInStock > 0 ? true : false;
 
   const inStockArray = Array.from(
     { length: product.countInStock },
     (_, i) => i + 1
   );
+
+  const addToCard = () => {
+    useStore.setState({
+      name: product.name,
+      price: product.price,
+      countInStock: product.countInStock,
+    });
+  };
 
   const buttonClasses = productInStock ? "btn btn-add" : "btn btn-disabled";
   return (
@@ -72,7 +87,11 @@ const productPage: FC<ProductPageProps> = async ({ params }) => {
                   </div>
                 )}
                 <div className={styles.add}>
-                  <button className={buttonClasses} disabled={!productInStock}>
+                  <button
+                    className={buttonClasses}
+                    disabled={!productInStock}
+                    onClick={addToCard}
+                  >
                     Add To Cart
                   </button>
                 </div>
