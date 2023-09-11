@@ -21,6 +21,6 @@ $container-width: 1400px;
 
 @mixin flex-center {
   display: flex;
-  justify-content: space-center;
+  justify-content: center;
   align-items: center;
 }

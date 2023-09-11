@@ -5,7 +5,7 @@ const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
-      <div className="container">
+      <div className={`container ${styles.container}`}>
         <p>Teashop &copy; {currentYear}</p>
       </div>
     </footer>
