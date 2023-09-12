@@ -1,15 +1,16 @@
 import styles from "../styles/productPage.module.scss";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating/Rating";
 import ProductImage from "../components/ProductImage/ProductImage";
 import { useGetSingleProductQuery } from "../slices/productsApiSlice";
 import Spinner from "../components/Spinner/Spinner";
-import Swal from "sweetalert2";
 import Message from "../components/Message/Message";
 
 const ProductPage = () => {
   const { id: productId } = useParams();
+  const [qty, setQty] = useState(1);
 
   if (!productId) {
     return <div>Product Not Found</div>;
@@ -71,20 +72,31 @@ const ProductPage = () => {
                     </div>
                     {product.countInStock > 0 && (
                       <div className={styles.item}>
-                        <p className={styles.col}>Qty:</p>
-                        <div className={styles.select}>
-                          <select name="qty" id="qty">
-                            {product &&
-                              Array.from(
-                                { length: product.countInStock },
-                                (_, i) => i + 1
-                              ).map((x) => (
-                                <option key={x} value={x}>
-                                  {x}
-                                </option>
-                              ))}
-                          </select>
+                        <div className={styles.qty}>
+                          <p className={styles.col}>Qty:</p>
+                          <div className={styles.select}>
+                            <select
+                              name="qty"
+                              id="qty"
+                              onChange={(e) => setQty(Number(e.target.value))}
+                            >
+                              {product &&
+                                product.countInStock > 0 &&
+                                [...Array(product.countInStock).keys()].map(
+                                  (x) => (
+                                    <option key={x} value={x + 1}>
+                                      {x + 1}
+                                    </option>
+                                  )
+                                )}
+                            </select>
+                          </div>
                         </div>
+                        {product.countInStock <= 10 && (
+                          <p className={styles.alert}>
+                            Only {product.countInStock} Left!
+                          </p>
+                        )}
                       </div>
                     )}
                     <div className={styles.add}>
