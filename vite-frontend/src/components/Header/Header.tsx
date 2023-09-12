@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import user from "/icons/user.png";
 import cart from "/icons/cart.png";
 import tea from "/icons/tea.png";
+import { useSelector } from "react-redux";
 
 const Header: FC = () => {
+  const { cartItems } = useSelector((state: any) => state.cart);
+
   return (
     <header className={styles.header}>
       <div className="container">
@@ -27,7 +30,7 @@ const Header: FC = () => {
                 className={styles.icon}
                 loading="lazy"
               />
-              Cart
+              {cartItems.length > 0 && cartItems.length} Cart
             </Link>
             <Link className={styles.link} to="/login">
               <img
