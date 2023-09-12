@@ -18,6 +18,14 @@ const ProductPage: FC = () => {
     error,
   } = useGetSingleProductQuery(productId);
 
+  if (error) {
+    if ("status" in error) {
+      const errMsg =
+        "error" in error ? error.error : JSON.stringify(error.data);
+      return <div>{errMsg}</div>;
+    }
+  }
+
   return (
     <main className={`main  ${styles.productPage}`}>
       <div className="container">
