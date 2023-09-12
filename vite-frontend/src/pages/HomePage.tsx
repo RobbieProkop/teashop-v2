@@ -1,6 +1,7 @@
 import styles from "../styles/grid.module.scss";
 import Product, { ProductType } from "../components/Product/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
+import Spinner from "../components/Spinner/Spinner";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -14,7 +15,7 @@ const HomePage = () => {
   return (
     <>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <Spinner />
       ) : (
         <>
           <h1>Zizi's Teashop</h1>

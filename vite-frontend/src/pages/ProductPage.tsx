@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Rating from "../components/Rating/Rating";
 import ProductImage from "../components/ProductImage/ProductImage";
 import { useGetSingleProductQuery } from "../slices/productsApiSlice";
+import Spinner from "../components/Spinner/Spinner";
 
 const ProductPage: FC = () => {
   const { id: productId } = useParams();
@@ -35,7 +36,7 @@ const ProductPage: FC = () => {
           </Link>
           <div className={styles.flex}>
             {isLoading ? (
-              <h1>Loading...</h1>
+              <Spinner />
             ) : product ? (
               <>
                 <ProductImage product={product} />
