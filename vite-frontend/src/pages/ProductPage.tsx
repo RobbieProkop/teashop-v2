@@ -1,13 +1,14 @@
 import styles from "../styles/productPage.module.scss";
-import { FC } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating/Rating";
 import ProductImage from "../components/ProductImage/ProductImage";
 import { useGetSingleProductQuery } from "../slices/productsApiSlice";
 import Spinner from "../components/Spinner/Spinner";
+import Swal from "sweetalert2";
+import Message from "../components/Message/Message";
 
-const ProductPage: FC = () => {
+const ProductPage = () => {
   const { id: productId } = useParams();
 
   if (!productId) {
@@ -23,7 +24,9 @@ const ProductPage: FC = () => {
     if ("status" in error) {
       const errMsg =
         "error" in error ? error.error : JSON.stringify(error.data);
-      return <div>{errMsg}</div>;
+      return Swal.fire({
+        title: errMsg,
+      });
     }
   }
 
@@ -107,6 +110,7 @@ const ProductPage: FC = () => {
             )}
           </div>
         </section>
+        <Message variant="info" text="This is a test message" />
         <section className={styles.reviews} id="reviews">
           <h2>Reviews</h2>
           <ul>
