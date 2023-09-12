@@ -24,9 +24,7 @@ const ProductPage = () => {
     if ("status" in error) {
       const errMsg =
         "error" in error ? error.error : JSON.stringify(error.data);
-      return Swal.fire({
-        title: errMsg,
-      });
+      return <Message variant="danger" text={errMsg} />;
     }
   }
 
@@ -110,7 +108,7 @@ const ProductPage = () => {
             )}
           </div>
         </section>
-        <Message variant="info" text="This is a test message" />
+
         <section className={styles.reviews} id="reviews">
           <h2>Reviews</h2>
           <ul>

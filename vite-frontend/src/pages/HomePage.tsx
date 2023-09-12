@@ -2,6 +2,7 @@ import styles from "../styles/grid.module.scss";
 import Product, { ProductType } from "../components/Product/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Spinner from "../components/Spinner/Spinner";
+import Message from "../components/Message/Message";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -9,7 +10,7 @@ const HomePage = () => {
     if ("status" in error) {
       const errMsg =
         "error" in error ? error.error : JSON.stringify(error.data);
-      return <div>{errMsg}</div>;
+      return <Message variant="danger" text={errMsg} />;
     }
   }
   return (
