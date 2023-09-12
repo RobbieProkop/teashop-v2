@@ -1,28 +1,30 @@
 import styles from "../styles/grid.module.scss";
-import { useState, useEffect } from "react";
 import Product, { ProductType } from "../components/Product/Product";
-import axios from "axios";
+import { useGetProductsQuery } from "../slices/productsApiSlice";
 
 const HomePage = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get("/api/products");
-      setProducts(data);
-    };
-
-    fetchProducts();
-  }, []);
-
+  const { data: products, isLoading, error } = useGetProductsQuery();
+  if (error) {
+    if ("status" in error) {
+      const errMsg =
+        "error" in error ? error.error : JSON.stringify(error.data);
+      return <div>{errMsg}</div>;
+    }
+  }
   return (
     <>
-      <h1>Latest Products</h1>
-      <div className={styles.cardGrid}>
-        {products.map((product) => {
-          return <Product key={product._id} product={product} />;
-        })}
-      </div>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <h1>Zizi's Teashop</h1>
+          <div className={styles.cardGrid}>
+            {products.map((product) => {
+              return <Product key={product._id} product={product} />;
+            })}
+          </div>
+        </>
+      )}
     </>
   );
 };
