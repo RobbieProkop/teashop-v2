@@ -20,3 +20,18 @@ export interface CartProduct {
   price: number;
   qty: number;
 }
+
+export interface CartState {
+  cartItems: CartProduct[];
+  shippingAddress: {
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
+  paymentMethod: string;
+  itemsPrice: number;
+  shippingPrice: number;
+  taxPrice: number;
+  totalPrice: number;
+}

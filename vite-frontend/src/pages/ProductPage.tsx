@@ -1,14 +1,19 @@
 import styles from "../styles/productPage.module.scss";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating/Rating";
 import ProductImage from "../components/ProductImage/ProductImage";
-import { useGetSingleProductQuery } from "../slices/productsApiSlice";
 import Spinner from "../components/Spinner/Spinner";
 import Message from "../components/Message/Message";
+import { useGetSingleProductQuery } from "../slices/productsApiSlice";
+import { addToCart } from "../slices/cartSlice";
+import { AppDispatch } from "../store";
+import { useDispatch } from "react-redux";
 
 const ProductPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const { id: productId } = useParams();
   const [qty, setQty] = useState(1);
 
@@ -20,6 +25,11 @@ const ProductPage = () => {
     isLoading,
     error,
   } = useGetSingleProductQuery(productId);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate("/cart");
+  };
 
   if (error) {
     if ("status" in error) {
@@ -78,13 +88,14 @@ const ProductPage = () => {
                             <select
                               name="qty"
                               id="qty"
+                              value={qty}
                               onChange={(e) => setQty(Number(e.target.value))}
                             >
                               {product &&
                                 product.countInStock > 0 &&
                                 [...Array(product.countInStock).keys()].map(
                                   (x) => (
-                                    <option key={x} value={x + 1}>
+                                    <option key={x + 1} value={x + 1}>
                                       {x + 1}
                                     </option>
                                   )
@@ -108,6 +119,7 @@ const ProductPage = () => {
                         }
                         disabled={product.countInStock === 0}
                         type="button"
+                        onClick={addToCartHandler}
                       >
                         Add To Cart
                       </button>
