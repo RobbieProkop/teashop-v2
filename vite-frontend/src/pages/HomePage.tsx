@@ -11,7 +11,7 @@ const HomePage = () => {
     if ("status" in error) {
       const errMsg =
         "error" in error ? error.error : JSON.stringify(error.data);
-      return <Message variant="danger" text={errMsg} />;
+      return <Message variant="danger">{errMsg}</Message>;
     }
   }
   return (

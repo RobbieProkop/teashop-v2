@@ -17,6 +17,7 @@ export interface CartProduct {
   image: string[];
   description: string;
   brand: string;
+  countInStock: number;
   price: number;
   qty: number;
 }

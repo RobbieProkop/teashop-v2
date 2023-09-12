@@ -2,10 +2,10 @@ import styles from "./message.module.scss";
 
 interface MessageProps {
   variant?: string;
-  text: string;
+  children: string | React.ReactNode;
 }
 
-const Message = ({ variant, text }: MessageProps) => {
+const Message = ({ variant, children }: MessageProps) => {
   let variantClass;
   switch (variant) {
     case "success":
@@ -23,7 +23,7 @@ const Message = ({ variant, text }: MessageProps) => {
   }
   return (
     <div className={`${styles.alertContainer} ${variantClass}`}>
-      <h2>{text}</h2>
+      <h2>{children}</h2>
     </div>
   );
 };

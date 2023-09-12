@@ -1,10 +1,11 @@
 import { FC } from "react";
-import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import styles from "./header.module.scss";
 import user from "/icons/user.png";
 import cart from "/icons/cart.png";
 import tea from "/icons/tea.png";
-import { useSelector } from "react-redux";
+import { CartProduct } from "../../states";
 
 const Header: FC = () => {
   const { cartItems } = useSelector((state: any) => state.cart);
@@ -30,7 +31,12 @@ const Header: FC = () => {
                 className={styles.icon}
                 loading="lazy"
               />
-              {cartItems.length > 0 && cartItems.length} Cart
+              {cartItems.length > 0 &&
+                cartItems.reduce(
+                  (acc: number, item: CartProduct) => acc + item.qty,
+                  0
+                )}{" "}
+              Cart
             </Link>
             <Link className={styles.link} to="/login">
               <img
