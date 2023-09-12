@@ -1,19 +1,7 @@
 import { FC } from "react";
 import styles from "./product.module.scss";
 import Rating from "../Rating/Rating";
-
-export interface ProductType {
-  _id: string;
-  name: string;
-  image: string[];
-  description: string;
-  brand: string;
-  category: string;
-  price: number;
-  countInStock: number;
-  rating: number;
-  numReviews: number;
-}
+import { ProductType } from "../../states";
 
 export interface ProductProps {
   product: ProductType;

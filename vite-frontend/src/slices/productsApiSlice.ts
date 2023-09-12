@@ -1,4 +1,4 @@
-import { ProductType } from "../components/Product/Product";
+import { ProductType } from "../states";
 import { PRODUCTS_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 

@@ -1,5 +1,6 @@
 import styles from "../styles/grid.module.scss";
-import Product, { ProductType } from "../components/Product/Product";
+import Product from "../components/Product/Product";
+import { ProductType } from "../states";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Spinner from "../components/Spinner/Spinner";
 import Message from "../components/Message/Message";
