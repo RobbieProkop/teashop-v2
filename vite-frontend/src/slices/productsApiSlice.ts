@@ -1,22 +1,23 @@
+import { ProductType } from "../components/Product/Product";
 import { PRODUCTS_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
 export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query({
+    getProducts: builder.query<ProductType[], void>({
       query: () => ({
         url: PRODUCTS_URL,
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    getSingleProduct: builder.query<ProductType, string>({
+      query: (id) => ({
+        url: `${PRODUCTS_URL}/${id}`,
       }),
       keepUnusedDataFor: 5,
     }),
   }),
 });
 
-export interface SerializedError {
-  name?: string;
-  message?: string;
-  stack?: string;
-  code?: string;
-}
-
-export const { useGetProductsQuery } = productsApiSlice;
+export const { useGetProductsQuery, useGetSingleProductQuery } =
+  productsApiSlice;

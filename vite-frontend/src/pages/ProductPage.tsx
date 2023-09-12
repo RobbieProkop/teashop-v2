@@ -1,28 +1,22 @@
 import styles from "../styles/productPage.module.scss";
-import { useState, useEffect, FC } from "react";
+import { FC } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating/Rating";
 import ProductImage from "../components/ProductImage/ProductImage";
-import { ProductType } from "../components/Product/Product";
-import axios from "axios";
+import { useGetSingleProductQuery } from "../slices/productsApiSlice";
 
 const ProductPage: FC = () => {
   const { id: productId } = useParams();
-  const [product, setProduct] = useState<ProductType | null>(null);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${productId}`);
-      setProduct(data);
-    };
-
-    fetchProduct();
-  }, [productId]);
-
-  const inStockArray = product
-    ? Array.from({ length: product.countInStock }, (_, i) => i + 1)
-    : ["Out Of Stock"];
+  if (!productId) {
+    return <div>Product Not Found</div>;
+  }
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useGetSingleProductQuery(productId);
 
   return (
     <main className={`main  ${styles.productPage}`}>
@@ -32,7 +26,9 @@ const ProductPage: FC = () => {
             <button className={`btn ${styles.btnLight}`}>Go Back</button>
           </Link>
           <div className={styles.flex}>
-            {product && (
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : product ? (
               <>
                 <ProductImage product={product} />
 
@@ -68,11 +64,15 @@ const ProductPage: FC = () => {
                         <p className={styles.col}>Qty:</p>
                         <div className={styles.select}>
                           <select name="qty" id="qty">
-                            {inStockArray.map((x) => (
-                              <option key={x} value={x}>
-                                {x}
-                              </option>
-                            ))}
+                            {product &&
+                              Array.from(
+                                { length: product.countInStock },
+                                (_, i) => i + 1
+                              ).map((x) => (
+                                <option key={x} value={x}>
+                                  {x}
+                                </option>
+                              ))}
                           </select>
                         </div>
                       </div>
@@ -93,6 +93,8 @@ const ProductPage: FC = () => {
                   </div>
                 </div>
               </>
+            ) : (
+              <h2>Product Not Found</h2>
             )}
           </div>
         </section>

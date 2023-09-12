@@ -19,9 +19,10 @@ const HomePage = () => {
         <>
           <h1>Zizi's Teashop</h1>
           <div className={styles.cardGrid}>
-            {products.map((product) => {
-              return <Product key={product._id} product={product} />;
-            })}
+            {products &&
+              products.map((product: ProductType) => {
+                return <Product key={product._id} product={product} />;
+              })}
           </div>
         </>
       )}
