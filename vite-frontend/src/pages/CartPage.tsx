@@ -5,11 +5,16 @@ import trash from "/icons/trash.png";
 import Message from "../components/Message/Message";
 import { AppDispatch } from "../store";
 import { CartProduct } from "../states";
+import { addToCart, replaceCartItem } from "../slices/cartSlice";
 
 const CartPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { cartItems } = useSelector((state: any) => state.cart);
+
+  const addToCartHandler = (product: CartProduct, qty: number) => {
+    dispatch(replaceCartItem({ ...product, qty }));
+  };
 
   return (
     <div className={styles.cart + " container"}>
@@ -36,7 +41,9 @@ const CartPage = () => {
                     name="qty"
                     id="qty"
                     value={item.qty}
-                    // onChange={(e) => setQty(Number(e.target.value))}
+                    onChange={(e) =>
+                      addToCartHandler(item, Number(e.target.value))
+                    }
                   >
                     {item.countInStock > 0 &&
                       [...Array(item.countInStock).keys()].map((x) => (
@@ -66,7 +73,7 @@ const CartPage = () => {
                 $
                 {cartItems.reduce(
                   (acc: number, item: CartProduct) =>
-                    acc + item.price * item.qty,
+                    Number((acc + item.price * item.qty).toFixed(2)),
                   0
                 )}
               </h3>

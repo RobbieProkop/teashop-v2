@@ -14,22 +14,32 @@ const cartSlice = createSlice({
       const existsItem = state.cartItems.find(
         (x: ProductType) => x._id === item._id
       );
-
+      let message;
       if (!existsItem) {
         state.cartItems = [...state.cartItems, item];
       }
-
-      // May need to change this to add to the item quantity, instead of replacing the item completely
       if (existsItem) {
-        state.cartItems = state.cartItems.map((x: CartProduct) =>
-          x._id === existsItem._id ? { ...x, qty: x.qty + item.qty } : x
-        );
+        state.cartItems = state.cartItems.map((x: CartProduct) => {
+          if (x._id !== existsItem._id) return x;
+          if (x.qty + item.qty > item.countInStock) {
+            message = `Sorry, there are only ${item.countInStock} ${item.name} in stock.`;
+
+            return x;
+          }
+          return { ...x, qty: x.qty + item.qty };
+        });
+        state.message = message;
       }
 
+      return updateCart(state);
+    },
+    replaceCartItem: (state, action) => {
+      const item = action.payload;
+      state.cartItems = state.cartItems.map((x: CartProduct) => item);
       return updateCart(state);
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, replaceCartItem } = cartSlice.actions;
 export default cartSlice.reducer;

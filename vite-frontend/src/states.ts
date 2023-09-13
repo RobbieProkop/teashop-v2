@@ -35,4 +35,5 @@ export interface CartState {
   shippingPrice: number;
   taxPrice: number;
   totalPrice: number;
+  message?: string;
 }
