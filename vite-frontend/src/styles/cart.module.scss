@@ -44,9 +44,13 @@
         border-radius: 5px;
         border: none;
         background-color: #ccc;
+        transition: opacity 0.2s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.6;
+        }
         img {
           max-width: 24px;
-          // max-height: 26px;
         }
       }
     }
