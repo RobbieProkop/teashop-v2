@@ -1,7 +1,7 @@
 {
   "name": "mern-udemy-2023",
   "version": "1.0.0",
-  "description": "eCommerce app built with MENN Stack",
+  "description": "eCommerce app built with MERN Stack",
   "type": "module",
   "main": "server.js",
   "scripts": {
